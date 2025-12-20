@@ -1,0 +1,480 @@
+/* ===================================================== */
+/* RESET + TEMEL AYARLAR */
+/* ===================================================== */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===================================================== */
+/* RENK PALETİ (PROFESYONEL) */
+/* ===================================================== */
+:root{
+  --primary: #173816;      /* Derin deniz yeşili */
+  --secondary: #6B8F71;    /* Zeytin yeşili */
+  --accent: #E8DCC8;       /* Kum / şampanya */
+  --bg: #F5F5F4;           /* Genel arka plan */
+  --text-main: #1F2933;
+  --text-soft: #6B7280;
+
+  --radius: 18px;
+  --shadow: 0 20px 50px rgba(0,0,0,.12);
+  --header-h: 120px;
+}
+
+body{
+  font-family: "Inter", Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* ===================================================== */
+/* GENEL */
+/* ===================================================== */
+.container{
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+main{
+  padding-top: var(--header-h);
+}
+
+/* ===================================================== */
+/* HEADER / NAVBAR */
+/* ===================================================== */
+#navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* TOP BAR */
+.top-bar{
+  background: #2c2c2c;
+  color: #ddd;
+  font-size: .85em;
+  padding: 8px 0;
+}
+
+.top-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.status{
+  background: var(--primary);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+/* MAIN NAV */
+.main-nav-bar{
+  background: var(--primary);
+  box-shadow: 0 4px 20px rgba(185, 40, 40, 0.25);
+  
+}
+
+.main-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+}
+
+.logo{
+  font-size: 2em;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.nav-links{
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a{
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color .25s;
+}
+
+.nav-links a:hover{
+  color: var(--accent);
+}
+
+/* ===================================================== */
+/* BUTONLAR */
+/* ===================================================== */
+/* HERO - Menüyü Keşfet Butonu */
+#hero .btn{
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  color: #ffffff;
+  padding: 16px 42px;
+  font-size: 1.1em;
+  font-weight: 900;
+  letter-spacing: 1px;
+
+  border: none;
+  border-radius: 999px; /* hap şeklinde */
+
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  text-transform: uppercase;
+
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+/* Hover efekti */
+#hero .btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  filter: brightness(1.05);
+}
+.btn{
+  cursor: pointer;
+  border-radius: 14px;
+  font-weight: 800;
+  transition: .25s;
+}
+
+.reservation-btn{
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  color: #fff;
+  padding: 12px 22px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(28,79,69,.4);
+}
+
+.reservation-btn:hover{
+  transform: translateY(-2px);
+}
+
+/* ===================================================== */
+/* HERO / SLIDER */
+/* ===================================================== */
+#hero{
+  height: calc(100vh - var(--header-h));
+  position: relative;
+  overflow: hidden;
+}
+
+.slider-container,
+.slide{
+  width: 100%;
+  height: 100%;
+}
+
+.slide{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.slide.active{
+  opacity: 1;
+}
+
+.slide::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+}
+
+.caption{
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+
+.caption h1{
+  font-size: 4em;
+  letter-spacing: 4px;
+  box-shadow: #2c2c2c;
+}
+
+.caption p{
+  font-size: 1.4em;
+  margin: 12px 0 30px;
+}
+
+/* ===================================================== */
+/* MENU */
+/* ===================================================== */
+#menu{
+  padding: 90px 0;
+  background: #fff;
+}
+
+.section-title{
+  text-align: center;
+  font-size: 3em;
+  color: var(--primary);
+}
+
+.section-subtitle{
+  text-align: center;
+  color: var(--text-soft);
+  margin-bottom: 50px;
+}
+
+.menu-categories{
+  display: flex;
+  gap: 30px;
+}
+
+.menu-category{
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  flex: 1;
+}
+
+.menu-category h4{
+  border-left: 6px solid var(--primary);
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.menu-item{
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px dotted #ccc;
+}
+
+.dish-image{
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.price{
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* ===================================================== */
+/* ABOUT – TAM EKRAN */
+/* ===================================================== */
+#about{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f6f4f2, #ebe5e2);
+}
+
+.about-card{
+  max-width: 1000px;
+  margin: auto;
+  background: #fff;
+  padding: 50px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.about-card h2{
+  font-size: 2.4em;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.about-card p{
+  font-size: 1.1em;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+}
+
+/* ===================================================== */
+/* CONTACT */
+/* ===================================================== */
+.contact-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 80px 0;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  margin-bottom: 12px;
+}
+
+/* ===================================================== */
+/* REZERVASYON SAYFASI */
+/* ===================================================== */
+.rezervasyon-page{
+  min-height: calc(100vh - var(--header-h));
+  position: relative;
+  padding: 60px 0;
+}
+
+/* SLIDER ARKAPLAN */
+.rezervasyon-page::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-position: center;
+  filter: blur(12px);
+  opacity: .35;
+  transform: scale(1.1);
+  z-index: 0;
+}
+
+.rezervasyon-page::after{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(28,79,69,.4);
+  z-index: 1;
+}
+
+.rezervasyon-page > .container{
+  position: relative;
+  z-index: 2;
+}
+
+/* KART */
+.rez-card{
+  max-width: 1100px;
+  margin: auto;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+
+.rez-header{
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: #fff;
+  padding: 16px 22px;              /* daha ince */
+  display: flex;
+  justify-content: space-between;  /* sol başlık - sağ buton */
+  align-items: center;
+  gap: 12px;
+}
+.rez-header h1{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: .3px;
+}
+.btn-geri{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.30);
+
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+
+.btn-geri:hover{
+  background: rgba(255,255,255,.22);
+  border-color: rgba(255,255,255,.45);
+  transform: translateY(-1px);
+}
+
+.btn-geri:active{
+  transform: translateY(0);
+}
+
+/* Butonun default focus çizgisini şık yap */
+.btn-geri:focus{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(232,220,200,.25); /* accent */
+}
+.rez-body{
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 28px;
+  padding: 28px;
+}
+
+.rez-info{
+  background: #f9faf9;
+  padding: 22px;
+  border-left: 6px solid var(--primary);
+  border-radius: 14px;
+}
+
+.rez-form label{
+  font-weight: 700;
+  margin: 14px 0 6px;
+  display: block;
+}
+
+.rez-form input,
+.rez-form textarea{
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #ccc;
+}
+
+.rez-submit{
+  margin-top: 20px;
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 16px;
+  border: none;
+  font-weight: 800;
+  .rez-submit { position: relative; z-index: 9999; }
+  
+
+}
+
+/* ===================================================== */
+/* RESPONSIVE */
+/* ===================================================== */
+@media (max-width: 900px){
+  .menu-categories,
+  .contact-grid,
+  .rez-body{
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+
+  .caption h1{
+    font-size: 2.5em;
+  }
+}

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SeaTalya Admin</title>
+  <style>
+    body{font-family:Arial,sans-serif;
+        margin:24px;
+        background:#f6f6f6}
+    h1{
+        margin:0 0 16px
+    }
+    .card{
+        background:#fff;
+        padding:16px;
+        border-radius:12px;
+        box-shadow:0 10px 30px rgba(0,0,0,.08)
+    }
+    table{
+        width:100%;border-collapse:collapse;
+        margin-top:12px
+    }
+    th,td{
+        padding:10px;
+        border-bottom:1px solid #eee;
+        text-align:left
+    }
+    th{
+        background:#fafafa
+    }
+    .row{
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap
+    }
+    input{
+        padding:10px;
+        border:1px solid #ddd;
+        border-radius:10px;
+        min-width:260px}
+    button{
+        padding:10px 14px;
+        border:0;
+        border-radius:10px;
+        cursor:pointer
+    }
+    .btn{
+        background:#173816;
+        color:#fff
+    }
+    .btn2{
+        background:#6B8F71;
+        color:#fff
+    }
+    .muted{
+        color:#666;
+        font-size:14px;
+        margin-top:8px
+    }
+  </style>
+</head>
+<body>
+  <h1>Rezervasyon Kayıtları (Admin)</h1>
+
+  <div class="card">
+    <div class="row">
+      <button class="btn" id="btnYenile">Yenile</button>
+      <input id="q" placeholder="Ara (isim veya tel)..." />
+      <button class="btn2" id="btnAra">Ara</button>
+    </div>
+
+    <div class="muted" id="durum">Hazır.</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Ad</th>
+          <th>Tel</th>
+          <th>Kişi</th>
+          <th>Tarih</th>
+          <th>Amaç</th>
+          <th>Not</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const API = "http://localhost:3000";
+
+    function fmtDate(x){
+      if(!x) return "";
+      // DB bazen ISO döndürür: 2025-12-24T21:00:00.000Z
+      const d = new Date(x);
+      if(!isNaN(d)) return d.toLocaleDateString("tr-TR");
+      return x;
+    }
+
+    async function getir(url){
+      document.getElementById("durum").innerText = "Yükleniyor...";
+      const res = await fetch(url);
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      const data = await res.json();
+      tabloBas(data);
+      document.getElementById("durum").innerText = "Toplam kayıt: " + data.length;
+    }
+
+    function tabloBas(list){
+      const tb = document.getElementById("tbody");
+      tb.innerHTML = "";
+      list.forEach(r => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${r.id ?? ""}</td>
+          <td>${r.name ?? ""}</td>
+          <td>${r.tel ?? ""}</td>
+          <td>${r.per ?? ""}</td>
+          <td>${fmtDate(r.date)}</td>
+          <td>${r.cause ?? ""}</td>
+          <td>${r.note ?? ""}</td>
+        `;
+        tb.appendChild(tr);
+      });
+    }
+
+    document.getElementById("btnYenile").addEventListener("click", () => {
+      getir(API + "/rezTab").catch(err => document.getElementById("durum").innerText = "Hata: " + err.message);
+    });
+
+    document.getElementById("btnAra").addEventListener("click", () => {
+      const q = document.getElementById("q").value.trim();
+      const url = q ? (API + "/form-search?q=" + encodeURIComponent(q)) : (API + "/rezTab");
+      getir(url).catch(err => document.getElementById("durum").innerText = "Hata: " + err.message);
+    });
+
+    // sayfa açılınca otomatik getir
+    getir(API + "/rezTab").catch(err => document.getElementById("durum").innerText = "Hata: " + err.message);
+  </script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 # SeaTalya – Deniz Ürünleri Restoranı Web Sitesi
 
+tarayıcı: 'https://esmavurall.github.io/SeaTalya/'
+
 SeaTalya, deniz ürünleri temalı bir restoran için geliştirilen modern ve kullanıcı odaklı bir web sitesi projesidir. Proje, restoranın kurumsal tanıtımını yapmak, menü ve içerik sunmak, kullanıcıların rezervasyon talebi oluşturmasını sağlamak amacıyla hazırlanmıştır.
 
 ## Proje Amacı
